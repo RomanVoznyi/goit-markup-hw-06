@@ -111,12 +111,15 @@ label {
 }
 
 .is-hidden {
+  position: absolute;
   color: transparent;
   font-size: 0px;
   padding: 0px;
   margin: 0px;
-  width: 0px;
-  height: 0px;
+  width: 1px;
+  height: 1px;
+  margin: -1;
+  clip: rect(0 0 0 0);
   border: none;
 }
 
@@ -341,12 +344,12 @@ h1 {
     visibility 250ms var(--time-function);
 }
 
-.modal-box.is-hidden {
+.modal-box.visibility-hidden {
   opacity: 0;
   visibility: hidden;
 }
 
-.modal-box.is-hidden .modal-form {
+.modal-box.visibility-hidden .modal-form {
   transform: perspective(600px) scale(0.5) rotateX(90deg);
 }
 
@@ -470,16 +473,6 @@ h1 {
 
   align-items: center;
   justify-content: center;
-}
-
-.modal-checkbox.is-hidden {
-  position: absolute;
-  padding: 0px;
-  margin: 0px;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  clip: rect(0 0 0 0);
 }
 
 .icon-checkbox {
@@ -903,7 +896,7 @@ h1 {
 
 /*-------------- Portfolio page styles -------------- */
 
-.filter-list {
+.filter-box {
   display: flex;
   margin-bottom: 50px;
 
@@ -941,59 +934,12 @@ h1 {
     0px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
-/* ------------ Actions with filter --------------- */
-
-#filt-all:checked ~ .filter-list .filter-item .label-all {
+.filter-radio:checked + .filter-button {
   color: var(--additinal-color);
   background-color: var(--accent-color);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 3px 1px rgba(0, 0, 0, 0.1);
 }
-
-#filt-web:checked ~ .project-list > li:not(.type-web) {
-  display: none;
-}
-
-#filt-web:checked ~ .filter-list .filter-item .label-web {
-  color: var(--additinal-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-#filt-widg:checked ~ .project-list > li:not(.type-widg) {
-  display: none;
-}
-
-#filt-widg:checked ~ .filter-list .filter-item .label-widg {
-  color: var(--additinal-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-#filt-design:checked ~ .project-list > li:not(.type-design) {
-  display: none;
-}
-
-#filt-design:checked ~ .filter-list .filter-item .label-design {
-  color: var(--additinal-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-#filt-mark:checked ~ .project-list > li:not(.type-mark) {
-  display: none;
-}
-
-#filt-mark:checked ~ .filter-list .filter-item .label-mark {
-  color: var(--additinal-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
-}
-/* ------------ ------------------- --------------- */
 
 .project-list {
   display: flex;

@@ -13,7 +13,7 @@
   refs.closeModalLink.addEventListener("click", toggleModal);
 
   function toggleModal() {
-    refs.backdrop.classList.toggle("is-hidden");
+    refs.backdrop.classList.toggle("visibility-hidden");
   }
 
   // ----- Display date to console ------
