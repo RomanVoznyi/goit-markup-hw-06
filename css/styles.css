@@ -11,6 +11,7 @@
   --accent-color: #2196f3;
   --additinal-color: #ffffff;
   --logos-color: #afb1b8;
+  --colorPerson: #000;
 
   --background-basic: #ffffff;
   --background-additional: #f5f4fa;
@@ -328,9 +329,8 @@ h1 {
   height: 100%;
   z-index: 1;
   padding: 20px;
-
-  display: flex;
-  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   opacity: 1;
   visibility: visible;
@@ -350,15 +350,6 @@ h1 {
   transform: perspective(600px) scale(0.5) rotateX(90deg);
 }
 
-.modal-area {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: default;
-}
-
 .modal-form {
   position: relative;
   margin: auto;
@@ -372,12 +363,12 @@ h1 {
   border-radius: 4px;
 
   transform: perspective(600px) scale(1) rotateX(0);
-  transition: transform 500ms var(--time-function);
+  transition: transform 250ms var(--time-function);
 }
 
 .modal-title {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
 
   font-weight: 700;
   font-size: 20px;
@@ -385,94 +376,124 @@ h1 {
   text-align: center;
 }
 
-.modal-list {
+.input-box {
+  position: relative;
+  display: block;
+  margin-bottom: 28px;
+}
+
+.input-box.text-area {
   margin-bottom: 20px;
 }
 
-.modal-item {
-  position: relative;
-  padding-top: 18px;
-}
-
-.modal-item:not(:last-child) {
-  margin-bottom: 10px;
-}
-
 .modal-input {
+  position: relative;
   width: 100%;
-  padding: 11px 16px;
+  padding: 11px 15px 11px 41px;
 
   letter-spacing: 0.01em;
   border: 1px solid rgba(33, 33, 33, 0.2);
   outline-width: 0px;
   border-radius: 4px;
+
+  transition: border-color 250ms var(--time-function);
 }
 
 .modal-input.text-area {
-  height: 118px;
+  height: 120px;
   resize: none;
+  padding: 11px 15px;
 }
 
 .modal-label {
   position: absolute;
-  top: 30px;
-  left: 17px;
+  top: 50%;
+  left: 42px;
+  transform: translateY(-50%);
 
   font-size: 14px;
   line-height: 1.15;
   letter-spacing: 0.01em;
+
+  color: var(--basic-color);
+
+  transition: transform 250ms var(--time-function),
+    color 250ms var(--time-function);
+}
+
+.modal-label.text-area {
+  top: 20px;
+  left: 16px;
+}
+
+.icon-input {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+
+  width: 18px;
+  height: 18px;
+
+  fill: var(--header-color);
+
+  transition: fill 250ms var(--time-function);
+}
+
+.modal-input:focus {
+  border-color: var(--accent-color);
+}
+
+.modal-input:focus + .modal-label {
+  color: var(--accent-color);
 }
 
 .modal-input:focus + .modal-label,
 .modal-input:not(:placeholder-shown) + .modal-label {
   font-size: 12px;
   line-height: 1.17;
-
-  top: 0px;
+  transform: translateY(-38px) translateX(-26px);
 }
 
-.checkbox-block {
-  position: relative;
-  display: flex;
-  max-width: 425px;
-  margin: 0px auto 30px auto;
+.modal-input:focus + .modal-label.text-area,
+.modal-input:not(:placeholder-shown) + .modal-label.text-area {
+  transform: translateY(-38px) translateX(0);
+}
+
+.modal-input:focus ~ .icon-input {
+  fill: var(--accent-color);
+}
+
+.checkbox-box {
+  display: inline-flex;
+  margin: 0px auto 30px;
 
   align-items: center;
   justify-content: center;
 }
 
-.modal-checkbox {
-  margin-right: 9px;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
+.modal-checkbox.is-hidden {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
 }
 
 .icon-checkbox {
-  position: absolute;
+  display: block;
   width: 15px;
   height: 15px;
-  left: 0px;
-}
+  margin-right: 8px;
+  cursor: pointer;
 
-.icon-checkbox.check {
-  opacity: 0;
-  visibility: hidden;
-}
+  border: 2px solid var(--header-color);
+  border-radius: 2px;
 
-.icon-checkbox.square {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-checkbox:checked ~ .icon-checkbox.check {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-checkbox:checked ~ .icon-checkbox.square {
-  opacity: 0;
-  visibility: hidden;
+  transition: background-color 250ms var(--time-function),
+    border 250ms var(--time-function);
 }
 
 .checkbox-label {
@@ -484,9 +505,13 @@ h1 {
 
 .checkbox-link {
   line-height: 1.71;
-  text-decoration: underline;
-
   color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.modal-checkbox:checked + .icon-checkbox {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 
 .modal-close {
@@ -500,6 +525,9 @@ h1 {
   justify-content: center;
   width: 30px;
   height: 30px;
+  border-width: 0px;
+  outline-width: 0px;
+  cursor: pointer;
 
   background-color: var(--additinal-color);
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -513,6 +541,15 @@ h1 {
   object-fit: contain;
 
   fill: #000000;
+}
+
+.modal-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: default;
 }
 
 /* -------------- Sector Advantage styles -------------- */
